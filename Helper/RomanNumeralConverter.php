@@ -6,13 +6,14 @@ class RomanNumeralConverter
 {
     private $_startingNumber;
 
+    const HTML_OVERLINE = '<span style="text-decoration: overline">%s</span>';
     const MAP_NUMERAL = [
-        '<span style="text-decoration: overline">M</span>' => 1000000,
-        '<span style="text-decoration: overline">D</span>' => 500000,
-        '<span style="text-decoration: overline">C</span>' => 100000,
-        '<span style="text-decoration: overline">L</span>' => 50000,
-        '<span style="text-decoration: overline">X</span>' => 10000,
-        '<span style="text-decoration: overline">V</span>' => 5000,
+        'uM' => 1000000,
+        'uD' => 500000,
+        'uC' => 100000,
+        'uL' => 50000,
+        'uX' => 10000,
+        'uV' => 5000,
         'M' => 1000,
         'CM' => 900,
         'D' => 500,
@@ -40,9 +41,10 @@ class RomanNumeralConverter
 
         while ($number > 0) {
             foreach (self::MAP_NUMERAL as $romanNumeral => $int) {
+
                 if ($number >= $int) {
                     $number -= $int;
-                    $returnString .= $romanNumeral;
+                    $returnString .= $this->_formatNumeral($romanNumeral, $int);
 
                     break;
                 }
@@ -50,5 +52,16 @@ class RomanNumeralConverter
         }
 
         return $returnString;
+    }
+
+    private function _formatNumeral(
+        int $romanNumeral
+    ) : string
+    {
+        if ($romanNumeral[0] === 'u') {
+            return sprintf(self::HTML_OVERLINE, substr($romanNumeral, 1));
+        }
+
+        return $romanNumeral;
     }
 }
