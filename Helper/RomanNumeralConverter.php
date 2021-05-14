@@ -4,6 +4,8 @@ namespace RomanNumeral\Helper;
 
 class RomanNumeralConverter
 {
+    private $_startingNumber;
+
     const MAP_NUMERAL = [
         '<span style="text-decoration: overline">M</span>' => 1000000,
         '<span style="text-decoration: overline">D</span>' => 500000,
@@ -26,9 +28,15 @@ class RomanNumeralConverter
         'I' => 1
     ];
 
-    public static function getRomanNumeral(int $number) : string
+    public function __construct(int $number)
+    {
+        $this->_startingNumber = $number;
+    }
+
+    public function getRomanNumeral() : string
     {
         $returnString = '';
+        $number = $this->_startingNumber;
 
         while ($number > 0) {
             foreach (self::MAP_NUMERAL as $romanNumeral => $int) {

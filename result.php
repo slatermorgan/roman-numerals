@@ -3,6 +3,8 @@
 require_once "Helper/RomanNumeralConverter.php";
 use RomanNumeral\Helper\RomanNumeralConverter;
 
+$romanNumeralConverter = new RomanNumeralConverter($_POST["int"]);
+
 ?>
 
 <!DOCTYPE HTML>
@@ -18,7 +20,7 @@ use RomanNumeral\Helper\RomanNumeralConverter;
                 <span>
                     Result:
                     <strong>
-                        <?php echo RomanNumeralConverter::getRomanNumeral($_POST["int"]); ?>
+                        <?php echo $romanNumeralConverter->getRomanNumeral(); ?>
                     </strong>
                 </span>
                 <small id="emailHelp" class="d-none">We'll never share your email with anyone else.</small>
