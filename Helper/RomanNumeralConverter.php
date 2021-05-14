@@ -5,6 +5,12 @@ namespace RomanNumeral\Helper;
 class RomanNumeralConverter
 {
     const MAP_NUMERAL = [
+        '<span style="text-decoration: overline">M</span>' => 1000000,
+        '<span style="text-decoration: overline">D</span>' => 500000,
+        '<span style="text-decoration: overline">C</span>' => 100000,
+        '<span style="text-decoration: overline">L</span>' => 50000,
+        '<span style="text-decoration: overline">X</span>' => 10000,
+        '<span style="text-decoration: overline">V</span>' => 5000,
         'M' => 1000,
         'CM' => 900,
         'D' => 500,
