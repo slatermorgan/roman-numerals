@@ -1,0 +1,17 @@
+{
+    "name": "slatermorgan/roman-numerals",
+    "description": "A simple roman numeral converter",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Morgan Slater",
+            "email": "45826559+slatermorgan@users.noreply.github.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "RomanNumeral\\Helper\\": "Helper/"
+        }
+    }
+}
