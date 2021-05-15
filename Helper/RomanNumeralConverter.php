@@ -8,12 +8,12 @@ class RomanNumeralConverter
 
     const HTML_OVERLINE = '<span style="text-decoration: overline">%s</span>';
     const MAP_NUMERAL = [
-        1000000 => 'uM',
-        500000 => 'uD',
-        100000 => 'uC',
-        50000 => 'uL',
-        10000 => 'uX',
-        5000 => 'uV',
+        1000000 => 'M',
+        500000 => 'D',
+        100000 => 'C',
+        50000 => 'L',
+        10000 => 'X',
+        5000 => 'V',
         1000 => 'M',
         900 => 'CM',
         500 => 'D',
@@ -54,11 +54,13 @@ class RomanNumeralConverter
     }
 
     private function _formatNumeral(
-        string $romanNumeral
+        string $romanNumeral,
+        int $int
     ) : string
     {
-        if ($romanNumeral[0] === 'u') {
-            return sprintf(self::HTML_OVERLINE, substr($romanNumeral, 1));
+        // Add overline
+        if ($int > 1000) {
+            return sprintf(self::HTML_OVERLINE, $romanNumeral);
         }
 
         return $romanNumeral;
