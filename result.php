@@ -1,9 +1,22 @@
 <?php
 
 require_once "Helper/RomanNumeralConverter.php";
+require_once "Helper/InputValidator.php";
 use RomanNumeral\Helper\RomanNumeralConverter;
+use RomanNumeral\Helper\InputValidator;
 
-$romanNumeralConverter = new RomanNumeralConverter($_POST["int"]);
+$inputValidator = new InputValidator($_POST["int"]);
+$result = '';
+$errorMessage = '';
+
+if ($inputValidator->isValid()) {
+    $romanNumeralConverter = new RomanNumeralConverter($_POST["int"]);
+    $result = $romanNumeralConverter->getRomanNumeral();
+} else {
+    $errorMessage = $inputValidator->getMessage();
+}
+
+
 
 ?>
 
@@ -20,10 +33,12 @@ $romanNumeralConverter = new RomanNumeralConverter($_POST["int"]);
                 <span>
                     Result:
                     <strong>
-                        <?php echo $romanNumeralConverter->getRomanNumeral(); ?>
+                        <?php echo $result; ?>
                     </strong>
                 </span>
-                <small id="emailHelp" class="d-none">We'll never share your email with anyone else.</small>
+                <span class="text-danger">
+                    <?php echo $errorMessage; ?>
+                </span>
             </div>
             <a href="/" class="btn btn-primary">Try Another</a>
         </div>
