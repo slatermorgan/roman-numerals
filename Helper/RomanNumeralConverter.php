@@ -8,25 +8,25 @@ class RomanNumeralConverter
 
     const HTML_OVERLINE = '<span style="text-decoration: overline">%s</span>';
     const MAP_NUMERAL = [
-        'uM' => 1000000,
-        'uD' => 500000,
-        'uC' => 100000,
-        'uL' => 50000,
-        'uX' => 10000,
-        'uV' => 5000,
-        'M' => 1000,
-        'CM' => 900,
-        'D' => 500,
-        'CD' => 400,
-        'C' => 100,
-        'XC' => 90,
-        'L' => 50,
-        'XL' => 40,
-        'X' => 10,
-        'IX' => 9,
-        'V' => 5,
-        'IV' => 4,
-        'I' => 1
+        1000000 => 'uM',
+        500000 => 'uD',
+        100000 => 'uC',
+        50000 => 'uL',
+        10000 => 'uX',
+        5000 => 'uV',
+        1000 => 'M',
+        900 => 'CM',
+        500 => 'D',
+        400 => 'CD',
+        100 => 'C',
+        90 => 'XC',
+        50 => 'L',
+        40 => 'XL',
+        10 => 'X',
+        9 => 'IX',
+        5 => 'V',
+        4 => 'IV',
+        1 => 'I'
     ];
 
     public function __construct(int $number)
@@ -40,8 +40,7 @@ class RomanNumeralConverter
         $number = $this->_startingNumber;
 
         while ($number > 0) {
-            foreach (self::MAP_NUMERAL as $romanNumeral => $int) {
-
+            foreach (self::MAP_NUMERAL as $int => $romanNumeral) {
                 if ($number >= $int) {
                     $number -= $int;
                     $returnString .= $this->_formatNumeral($romanNumeral, $int);
@@ -55,7 +54,7 @@ class RomanNumeralConverter
     }
 
     private function _formatNumeral(
-        int $romanNumeral
+        string $romanNumeral
     ) : string
     {
         if ($romanNumeral[0] === 'u') {
